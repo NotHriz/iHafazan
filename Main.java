@@ -6,7 +6,7 @@ public class Main {
         StudentDetails student = new StudentDetails();
         Scanner scan = new Scanner(System.in);
         boolean login_sucessfull = false;
-    
+
         while (true) {
             try {
                 // Display the menu
