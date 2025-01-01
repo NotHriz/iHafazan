@@ -4,56 +4,74 @@ public class Main {
     public static void main(String[] args) {
         UstazUI ustaz = new UstazUI();
         StudentDetails student = new StudentDetails();
-        boolean login_sucessfull = false;
+        SurahManagement surah = new SurahManagement();
+
+        boolean loginSuccessful = false;
+        boolean studentSelected = false;
+        boolean surahSelected = false;
+
         try (Scanner scan = new Scanner(System.in)) {
             while (true) {
-                try {  // Try-with-resources to auto-close the scanner
-                    // Display the menu
+                try {
+                    // Main menu
                     System.out.println("\n1. Login\n2. Register\n3. Logout\n4. Exit");
                     System.out.print("Choose an option: ");
-                    int choice = Integer.parseInt(scan.nextLine());
-                    
-                    // Perform the selected action
+                    int choice = Integer.parseInt(scan.nextLine()); // Always use nextLine to avoid newline issues
+
+                    // Perform actions based on choice
                     switch (choice) {
-                        case 1 -> login_sucessfull = ustaz.login();
+                        case 1 -> loginSuccessful = ustaz.login();
                         case 2 -> ustaz.register();
                         case 3 -> ustaz.logout();
                         case 4 -> {
                             System.out.println("Exiting...");
-                            System.exit(0); // Exit the program
+                            System.exit(0);
                         }
                         default -> System.out.println("Invalid choice. Try again.");
                     }
-                } 
-                catch (Exception e) {
-                    System.out.println("Invalid input. Try again.");
-                    scan.nextLine(); // Flush error input
+                } catch (Exception e) {
+                    System.out.println("Invalid input. Please enter a valid number.");
                 }
 
-                // TODO: Somehow integrate hafazan details maybe here????
-                while (login_sucessfull) {
+                while (loginSuccessful) {
                     try {
-                        // Display the menu
-                        System.out.println("\n1. Add Student\n2. Edit Student\n3. Delete Student\n4. List Students\n5. Logout");
+                        // Logged-in menu
+                        System.out.println("\n1. Student\n2. Surah\n3. Logout");
                         System.out.print("Choose an option: ");
                         int choice = Integer.parseInt(scan.nextLine());
-                        
-                        // Perform the selected action
+
                         switch (choice) {
-                            case 1 -> student.addStudent();
-                            case 2 -> student.editStudent();
-                            case 3 -> student.deleteStudent();
-                            case 4 -> student.listStudent();
-                            case 5 -> {
-                                ustaz.logout();
-                                login_sucessfull = false; // Exit the inner loop
+                            case 1 -> studentSelected = true;
+                            case 2 -> surahSelected = true;
+                            case 3 -> {
+                                System.out.println("Logging out...");
+                                loginSuccessful = false;
                             }
                             default -> System.out.println("Invalid choice. Try again.");
                         }
-                    } 
-                    catch (Exception e) {
-                        System.out.println("Invalid input. Try again.");
-                        scan.nextLine(); // Flush error input
+
+                        // Student menu
+                        while (studentSelected) {
+                            System.out.println("\n1. Add Student\n2. Edit Student\n3. Delete Student\n4. List Student\n5. Back");
+                            System.out.print("Choose an option: ");
+                            choice = Integer.parseInt(scan.nextLine());
+
+                            switch (choice) {
+                                case 1 -> student.addStudent();
+                                case 2 -> student.editStudent();
+                                case 3 -> student.deleteStudent();
+                                case 4 -> student.listStudent();
+                                case 5 -> studentSelected = false; // Exit student menu
+                                default -> System.out.println("Invalid choice. Try again.");
+                            }
+                        }
+
+                        // Surah menu
+                        while (surahSelected) {
+                            surahSelected =surah.manageSurahs();
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Invalid input. Please enter a valid number.");
                     }
                 }
             }
