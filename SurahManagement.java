@@ -9,7 +9,7 @@ public class SurahManagement {
     private static final String STUDENT_FILE = "student_data.txt"; // File to store student data
 
     // Constructor to load existing Surah data from the file
-    private SurahManagement() {
+    public SurahManagement() {
         loadSurahsFromFile();
     }
 
@@ -67,8 +67,7 @@ public class SurahManagement {
     public void assignSurahToStudent() {
         try {
             System.out.print("Enter Student ID: ");
-            int studentId = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            int studentId = Integer.parseInt(scanner.nextLine());
 
             String studentName = getStudentNameById(studentId);
             if (studentName == null) {
@@ -77,7 +76,7 @@ public class SurahManagement {
             }
 
             System.out.print("Enter Surah ID to assign: ");
-            int surahId = scanner.nextInt();
+            int surahId = Integer.parseInt(scanner.nextLine());
 
             for (Surah surah : surahList) {
                 if (surah.getId() == surahId) {
@@ -90,7 +89,6 @@ public class SurahManagement {
             System.out.println("Error: Surah with ID " + surahId + " not found!");
         } catch (Exception e) {
             System.out.println("Error: Invalid input! Please try again.");
-            scanner.nextLine(); // Clear invalid input
         }
     }
 
@@ -98,15 +96,13 @@ public class SurahManagement {
     public void createSurah() {
         try {
             System.out.print("Enter Surah ID: ");
-            int id = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            int id = Integer.parseInt(scanner.nextLine());
             System.out.print("Enter Surah Name: ");
             String name = scanner.nextLine();
             System.out.print("Enter Total Ayahs: ");
-            int totayahs = scanner.nextInt();
+            int totayahs = Integer.parseInt(scanner.nextLine());
             System.out.print("Enter Current Ayahs: ");
-            int ayahs = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            int ayahs = Integer.parseInt(scanner.nextLine());
 
             System.out.print("Enter Date Created (YYYY-MM-DD): ");
             String dateCreated = scanner.nextLine(); // Take date as input
@@ -117,7 +113,6 @@ public class SurahManagement {
             System.out.println("Surah added successfully on " + dateCreated + "!");
         } catch (Exception e) {
             System.out.println("Error: Invalid input! Please try again.");
-            scanner.nextLine(); // Clear invalid input
         }
     }
 
@@ -125,20 +120,17 @@ public class SurahManagement {
     public void updateSurah() {
         try {
             System.out.print("Enter Student ID to verify: ");
-            int studentId = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            int studentId = Integer.parseInt(scanner.nextLine());
 
             System.out.print("Enter Surah ID to update: ");
-            int id = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            int id = Integer.parseInt(scanner.nextLine());
 
             for (Surah surah : surahList) {
                 if (surah.getId() == id && surah.getAssignedStudentId() == studentId) {
                     System.out.print("Enter new Surah Name: ");
                     String name = scanner.nextLine();
                     System.out.print("Enter new current Number of Ayahs: ");
-                    int ayahs = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
+                    int ayahs = Integer.parseInt(scanner.nextLine());
 
                     System.out.print("Enter updated Date Created (YYYY-MM-DD): ");
                     String dateCreated = scanner.nextLine(); // Take date as input
@@ -154,7 +146,6 @@ public class SurahManagement {
             System.out.println("Error: Surah with ID " + id + " not found or incorrect Student ID!");
         } catch (Exception e) {
             System.out.println("Error: Invalid input! Please try again.");
-            scanner.nextLine(); // Clear invalid input
         }
     }
 
@@ -162,12 +153,10 @@ public class SurahManagement {
     public void deleteSurah() {
         try {
             System.out.print("Enter Student ID to verify: ");
-            int studentId = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            int studentId = Integer.parseInt(scanner.nextLine());
 
             System.out.print("Enter Surah ID to delete: ");
-            int id = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            int id = Integer.parseInt(scanner.nextLine());
 
             for (Surah surah : surahList) {
                 if (surah.getId() == id && surah.getAssignedStudentId() == studentId) {
@@ -180,7 +169,6 @@ public class SurahManagement {
             System.out.println("Error: Surah with ID " + id + " not found or incorrect Student ID!");
         } catch (Exception e) {
             System.out.println("Error: Invalid input! Please try again.");
-            scanner.nextLine(); // Clear invalid input
         }
     }
 
@@ -198,9 +186,10 @@ public class SurahManagement {
     }
 
     // Menu for managing Surahs
-    public void manageSurahs() {
+    public boolean manageSurahs() {
         int choice = 0;
-        do {
+        boolean surahSelected = true;
+        while (true) {
             try {
                 System.out.println("\n--- Surah Management ---");
                 System.out.println("1. Assign Surah to Student");
@@ -210,7 +199,7 @@ public class SurahManagement {
                 System.out.println("5. Delete Surah");
                 System.out.println("6. Exit");
                 System.out.print("Enter your choice: ");
-                choice = scanner.nextInt();
+                choice = Integer.parseInt(scanner.nextLine());
 
                 switch (choice) {
                     case 1:
@@ -230,14 +219,14 @@ public class SurahManagement {
                         break;
                     case 6:
                         System.out.println("Exiting Surah Management...");
-                        break;
+                        surahSelected = false;
+                        return surahSelected;
                     default:
                         System.out.println("Error: Invalid choice. Please select a valid option.");
                 }
             } catch (Exception e) {
                 System.out.println("Error: Invalid input! Please try again.");
-                scanner.nextLine(); // Clear invalid input
             }
-        } while (choice != 6);
+        } 
     }
 }

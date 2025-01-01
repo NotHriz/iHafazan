@@ -1,14 +1,3 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-// TODO: Review the code and identify the changes that need to be made to the Surah class
-// TODO: Implement this to main class
-// TODO: Review unused variables and methods
-// TODO: Review what class contructor needs and add to relevant class(es)
-// TODO: Review the methods and variables that need to be public and private
-// TODO: MAYBE seperate Surah and SurahManagement class for better understanding
-
-// Class representing a Surah (chapter of the Quran)
 class Surah {
     private int id; // Surah ID
     private String name; // Surah name
