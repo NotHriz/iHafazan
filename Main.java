@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         UstazUI ustaz = new UstazUI();
         StudentDetails student = new StudentDetails();
-        SurahManagement surah = new SurahManagement();
+        Hafazan sm = new Hafazan();
 
         boolean loginSuccessful = false;
         boolean studentSelected = false;
@@ -68,7 +68,37 @@ public class Main {
 
                         // Surah menu
                         while (surahSelected) {
-                            surahSelected =surah.manageSurahs();
+                            System.out.println("\n--- Surah Management ---");
+                            System.out.println("1. Add Surah");
+                            System.out.println("2. Update Surah");
+                            System.out.println("3. List Surahs");
+                            System.out.println("4. Delete Surah");
+                            System.out.println("5. Exit");
+                            System.out.print("Enter your choice: ");
+                
+                            choice = Integer.parseInt(scan.nextLine());
+                        
+                
+                            switch (choice) {
+                                case 1:
+                                    sm.addSurah();
+                                    break;
+                                case 2:
+                                    sm.updateSurah();
+                                    break;
+                                case 3:
+                                    sm.listSurahs();
+                                    break;
+                                case 4:
+                                    sm.deleteSurah();
+                                    break;
+                                case 5:
+                                    System.out.println("Exiting...");
+                                    surahSelected = false;
+                                    break;
+                                default:
+                                    System.out.println("Invalid choice. Try again.");
+                            }
                         }
                     } catch (Exception e) {
                         System.out.println("Invalid input. Please enter a valid number.");
