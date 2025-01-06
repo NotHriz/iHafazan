@@ -52,17 +52,21 @@ public class Main {
 
                         // Student menu
                         while (studentSelected) {
-                            System.out.println("\n1. Add Student\n2. Edit Student\n3. Delete Student\n4. List Student\n5. Back");
-                            System.out.print("Choose an option: ");
-                            choice = Integer.parseInt(scan.nextLine());
+                            try {
+                                System.out.println("\n1. Add Student\n2. Edit Student\n3. Delete Student\n4. List Student\n5. Back");
+                                System.out.print("Choose an option: ");
+                                choice = Integer.parseInt(scan.nextLine());
 
-                            switch (choice) {
-                                case 1 -> student.addStudent();
-                                case 2 -> student.editStudent();
-                                case 3 -> student.deleteStudent();
-                                case 4 -> student.listStudent();
-                                case 5 -> studentSelected = false; // Exit student menu
-                                default -> System.out.println("Invalid choice. Try again.");
+                                switch (choice) {
+                                    case 1 -> student.addStudent();
+                                    case 2 -> student.editStudent();
+                                    case 3 -> student.deleteStudent();
+                                    case 4 -> student.listStudent();
+                                    case 5 -> studentSelected = false; // Exit student menu
+                                    default -> System.out.println("Invalid choice. Try again.");
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Invalid input. Please enter a valid number.");
                             }
                         }
 

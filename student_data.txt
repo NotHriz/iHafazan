@@ -2,3 +2,5 @@
 2,hazif,2-0
 3,ssdsds,2-4
 4,popo,2-0
+1,zaim,1
+1,hafiz,2-0
