@@ -88,65 +88,31 @@ public class Hafazan {
 
     public void updateSurah() {
         try {
-            System.out.print("Enter Surah ID to update: ");
-            int id = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
-            for (Surah surah : surahList) {
-                if (surah.getId() == id) {
-                    System.out.println("Assigned Student IDs: " + surah.getAssignedStudentIds());
-
-                    System.out.print("Enter Additional Student IDs to Assign: ");
-                    String[] studentIds = scanner.nextLine().split(" ");
-                    for (String idStr : studentIds) {
-                        if (!idStr.trim().isEmpty()) {
-                            surah.addStudentId(Integer.parseInt(idStr.trim()));
-                        }
-                    }
-
-                    System.out.print("Enter New Total Ayahs: ");
-                    int totalAyahs = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
-
-                    System.out.print("Enter New Name: ");
-                    String name = scanner.nextLine();
-
-                    // Update surah details
-                    surahList.remove(surah);
-                    surahList.add(new Surah(id, name, totalAyahs, surah.getAssignedStudentIds()));
-
-                    saveSurahs();
-
-                    System.out.println("Surah updated successfully!");
-                    return;
-                }
-            }
-            System.out.println("Surah not found.");
             System.out.println("Choose an option:\n1. Update Surah Details\n2. Update Surah Assigned to Students");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
-    
+
             if (choice == 1) {
                 System.out.print("Enter Surah ID to update: ");
-                id = scanner.nextInt();
+                int id = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
-    
+
                 for (Surah surah : surahList) {
                     if (surah.getId() == id) {
                         System.out.print("Enter New Total Ayahs: ");
                         int totalAyahs = scanner.nextInt();
                         scanner.nextLine(); // Consume newline
-    
+
                         System.out.print("Enter New Name: ");
                         String name = scanner.nextLine();
-    
+
                         // Update surah details
                         surahList.remove(surah);
                         surahList.add(new Surah(id, name, totalAyahs, surah.getAssignedStudentIds()));
-    
+
                         saveSurahs();
-    
+
                         System.out.println("Surah details updated successfully!");
                         return;
                     }
@@ -154,13 +120,13 @@ public class Hafazan {
                 System.out.println("Surah not found.");
             } else if (choice == 2) {
                 System.out.print("Enter Surah ID to update assigned students: ");
-                id = scanner.nextInt();
+                int id = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
-    
+
                 for (Surah surah : surahList) {
                     if (surah.getId() == id) {
                         System.out.println("Current Assigned Student IDs: " + surah.getAssignedStudentIds());
-    
+
                         System.out.print("Enter Additional Student IDs to Assign: ");
                         String[] studentIds = scanner.nextLine().split(" ");
                         for (String idStr : studentIds) {
@@ -168,9 +134,9 @@ public class Hafazan {
                                 surah.addStudentId(Integer.parseInt(idStr.trim()));
                             }
                         }
-    
+
                         saveSurahs();
-    
+
                         System.out.println("Assigned students updated successfully!");
                         return;
                     }
@@ -237,32 +203,14 @@ public class Hafazan {
 
     public void deleteSurah() {
         try {
-            System.out.print("Enter Surah ID to delete: ");
-            int surahId = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
-            System.out.print("Enter Student ID to delete the Surah: ");
-            int studentId = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
-            for (Surah surah : surahList) {
-                if (surah.getId() == surahId && surah.getAssignedStudentIds().contains(studentId)) {
-                    surahList.remove(surah);
-                    saveSurahs();
-                    System.out.println("Surah with ID " + surahId + " and Student ID " + studentId + " deleted successfully!");
-                    return;
-                }
-            }
-
-            System.out.println("Surah with ID " + surahId + " and Student ID " + studentId + " not found.");
             System.out.print("Enter Surah ID: ");
             int id = scanner.nextInt();
             scanner.nextLine(); // Consume newline
-    
+
             System.out.print("Choose an option:\n1. Delete Surah and all Student IDs\n2. Delete Student ID only\nEnter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
-    
+
             for (Surah surah : surahList) {
                 if (surah.getId() == id) {
                     switch (choice) {
@@ -272,13 +220,13 @@ public class Hafazan {
                             saveSurahs();
                             System.out.println("Surah and all assigned student IDs deleted successfully!");
                             return;
-    
+
                         case 2:
                             // Delete only the student ID
                             System.out.print("Enter Student ID to remove: ");
-                            studentId = scanner.nextInt();
+                            int studentId = scanner.nextInt();
                             scanner.nextLine(); // Consume newline
-    
+
                             if (surah.getAssignedStudentIds().contains(studentId)) {
                                 surah.getAssignedStudentIds().remove((Integer) studentId);
                                 saveSurahs();
@@ -287,21 +235,21 @@ public class Hafazan {
                                 System.out.println("Student ID not found in this Surah.");
                             }
                             return;
-    
+
                         default:
                             System.out.println("Invalid option. Please try again.");
                             return;
                     }
                 }
             }
-    
+
             System.out.println("Surah not found.");
         } catch (Exception e) {
             System.out.println("Invalid input. Please try again.");
             scanner.nextLine(); // Clear invalid input
         }
     }
-    
+
     private void saveSurahs() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(SURAH_FILE))) {
             for (Surah surah : surahList) {
@@ -338,7 +286,6 @@ public class Hafazan {
         } catch (IOException e) {
             System.out.println("Error loading surahs: " + e.getMessage());
         }
-    }
-}
+        }
+     }
 
-    
