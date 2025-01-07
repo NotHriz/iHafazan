@@ -1,7 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.*;
-
+/*
+ * Author: Mukhriz bin Faizal Ibrahim(2410063)
+ */
 public class UstazUI {
 
     // Create a Scanner object

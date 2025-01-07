@@ -1,7 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.*;
-
+/*
+ * Author: Muhammad Hasif bin Aminuddin(2417035)
+ */
 public class StudentDetails {
     // Scanner object to get user input
     Scanner scanner = new Scanner(System.in);
