@@ -4,6 +4,7 @@ import java.util.Scanner;
 /*
  * Author: MUHAMMAD ZA'IM HAKIMI BIN AZMAN(2416015)
  */
+
 class Surah {
     private int id;
     private String name;
