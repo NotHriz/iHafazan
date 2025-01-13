@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         UstazUI ustaz = new UstazUI();
         StudentDetails student = new StudentDetails();
-        Hafazan sm = new Hafazan();
+        Hafazan hafazan = new Hafazan();
 
         boolean loginSuccessful = false;
         boolean studentSelected = false;
@@ -53,7 +53,7 @@ public class Main {
                         // Student menu
                         while (studentSelected) {
                             try {
-                                System.out.println("\n1. Add Student\n2. Edit Student\n3. Delete Student\n4. List Student\n5. Back");
+                                System.out.println("\n1. Add Student\n2. Edit Student\n3. Delete Student\n4. List Student\n5. Progress Tracking\n6. Exit");
                                 System.out.print("Choose an option: ");
                                 choice = Integer.parseInt(scan.nextLine());
 
@@ -62,7 +62,8 @@ public class Main {
                                     case 2 -> student.editStudent();
                                     case 3 -> student.deleteStudent();
                                     case 4 -> student.listStudent();
-                                    case 5 -> studentSelected = false; // Exit student menu
+                                    case 5 -> new ProgressTracking();
+                                    case 6 -> studentSelected = false; // Exit student menu
                                     default -> System.out.println("Invalid choice. Try again.");
                                 }
                             } catch (Exception e) {
@@ -85,16 +86,16 @@ public class Main {
                 
                             switch (choice) {
                                 case 1:
-                                    sm.addSurah();
+                                    hafazan.addSurah();
                                     break;
                                 case 2:
-                                    sm.updateSurah();
+                                    hafazan.updateSurah();
                                     break;
                                 case 3:
-                                    sm.listSurahs();
+                                    hafazan.listSurahs();
                                     break;
                                 case 4:
-                                    sm.deleteSurah();
+                                    hafazan.deleteSurah();
                                     break;
                                 case 5:
                                     System.out.println("Exiting...");
