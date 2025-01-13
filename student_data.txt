@@ -1,4 +1,10 @@
-1,zaim,9-0
+1,zaim,3-0
 2,hazif,2-0
-3,ssdsds,2-4
-4,popo,2-0
+3,alia,1-0
+4,arif,3-1
+5,nina,2-1
+6,fahmi,1-1
+7,sara,3-2
+8,amir,2-2
+9,aiman,1-2
+10,adib,3-3

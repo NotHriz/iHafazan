@@ -1,1 +1,10 @@
-1,al fatihah,5,7,4
+1,Al-Fatihah,7,1,2
+2,Al-Baqarah,286,3,4,5
+3,Aal-E-Imran,200,6,7
+4,An-Nisa,176,8,9
+5,Al-Ma'idah,120,10,1
+6,Al-An'am,165,2,3
+7,Al-A'raf,206,4,5
+8,Al-Anfal,75,7,6
+9,At-Tawbah,129,8,10
+10,Yunus,109,1,9
