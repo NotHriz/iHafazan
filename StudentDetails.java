@@ -10,9 +10,9 @@ public class StudentDetails {
     private int studentIDCounter = 1; // Initialize the counter for student ID
 
     // Create a database to store student details
-    static ArrayList<String> studentNames = new ArrayList<>();
-    static ArrayList<String> studentClass = new ArrayList<>();
-    static ArrayList<String> studentID = new ArrayList<>();
+    private ArrayList<String> studentNames = new ArrayList<>();
+    private ArrayList<String> studentClass = new ArrayList<>();
+    private ArrayList<String> studentID = new ArrayList<>();
 
     // Add a file to store student details
     static File studentDataFile = new File("student_data.txt");
@@ -185,8 +185,7 @@ public class StudentDetails {
                     studentClass.add(details[2]);
 
                     // Update the counter to the next ID
-                    String id = details[0].substring(1); // Extract numeric part of the ID
-                    int numericID = Integer.parseInt(id);
+                    int numericID = Integer.parseInt(details[0]);
                     studentIDCounter = Math.max(studentIDCounter, numericID + 1);
                 }
             }
